@@ -1,10 +1,9 @@
 use anchor_lang::prelude::*;
 use crate::state::*;
-use crate::errors::*;
 
 pub fn initialize_game(ctx: Context<InitializeGame>) -> Result<()> {
-    let game_state = &mut ctx.accounts.game_state;
-    let clock = Clock::get()?;
+    let game_state: &mut Account<'_, GameState> = &mut ctx.accounts.game_state;
+    let clock: Clock = Clock::get()?;
 
     game_state.authority = ctx.accounts.authority.key();
     game_state.players = 0;
@@ -17,8 +16,8 @@ pub fn initialize_game(ctx: Context<InitializeGame>) -> Result<()> {
 }
 
 pub fn initialize_player(ctx: Context<InitializePlayer>) -> Result<()> {
-    let player = &mut ctx.accounts.player;
-    let clock = Clock::get()?;
+    let player: &mut Account<'_, Player> = &mut ctx.accounts.player;
+    let clock: Clock = Clock::get()?;
 
     player.authority = ctx.accounts.authority.key();
     player.score = 0;

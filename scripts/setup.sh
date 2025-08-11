@@ -39,9 +39,10 @@ cd app && yarn install && cd ..
 echo "🏗️ Building Anchor program..."
 anchor build
 
-# Generate IDL
+# Generate IDL types
 echo "📄 Generating IDL types..."
-anchor idl parse --file target/idl/anchor_20250808.json --out app/src/idl/
+mkdir -p app/src/idl/
+anchor idl type target/idl/anchor_20250808.json --out app/src/idl/types.ts
 
 echo "✅ Setup complete!"
 echo ""

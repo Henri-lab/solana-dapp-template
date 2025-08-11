@@ -6,8 +6,8 @@ pub fn update_score(ctx: Context<UpdateScore>, new_score: u64) -> Result<()> {
     let player = &mut ctx.accounts.player;
     let game_state = &mut ctx.accounts.game_state;
 
-    require!(game_state.is_active, ErrorCode::InvalidOperation);
-    require!(player.authority == ctx.accounts.authority.key(), ErrorCode::Unauthorized);
+    require!(game_state.is_active, CustomError::InvalidOperation);
+    require!(player.authority == ctx.accounts.authority.key(), CustomError::Unauthorized);
 
     player.score += new_score;
     player.games_played += 1;
@@ -20,7 +20,7 @@ pub fn update_score(ctx: Context<UpdateScore>, new_score: u64) -> Result<()> {
 pub fn deactivate_game(ctx: Context<DeactivateGame>) -> Result<()> {
     let game_state = &mut ctx.accounts.game_state;
 
-    require!(game_state.authority == ctx.accounts.authority.key(), ErrorCode::Unauthorized);
+    require!(game_state.authority == ctx.accounts.authority.key(), CustomError::Unauthorized);
     
     game_state.is_active = false;
     
@@ -53,7 +53,7 @@ pub struct DeactivateGame<'info> {
         mut,
         seeds = [b"game", authority.key().as_ref()],
         bump,
-        has_one = authority @ ErrorCode::Unauthorized
+        has_one = authority @ CustomError::Unauthorized
     )]
     pub game_state: Account<'info, GameState>,
     
