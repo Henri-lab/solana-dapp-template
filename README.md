@@ -91,6 +91,10 @@ yarn install:frontend  # 安装前端依赖
 | `yarn test:unit` | 运行 Rust 单元测试 |
 
 ### 🚀 部署相关
+pre: 
+```bash
+solana-test-validator --reset --faucet-port [?] --rpc-port [?] #启动区块链网络
+```
 | 脚本 | 描述 |
 |------|------|
 | `yarn deploy` | 部署到配置的集群 |
