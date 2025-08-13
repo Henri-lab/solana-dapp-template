@@ -7,6 +7,7 @@ skip-lint = false
 
 [programs.localnet]
 anchor_20250808 = "FqkHhvwGbuFBXmUBXpyDQGgGkU34fnhJxzttH1As4Nw9"
+token_economics = "E8zKxLztD2HbMcGVdnZVzfXBgKPnfxYUJFKtPkH9oNn8"
 
 [registry]
 url = "https://api.apr.dev"

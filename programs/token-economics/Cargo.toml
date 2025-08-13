@@ -1,0 +1,22 @@
+[package]
+name = "token-economics"
+version = "0.1.0"
+description = "SPL Token economics and reward system"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "token_economics"
+
+[dependencies]
+anchor-lang = { version = "0.31.0", features = ["init-if-needed"] }
+anchor-spl = "0.31.0"
+spl-token = "4.0.0"
+spl-associated-token-account = "3.0.0"
+
+[features]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+cpi = ["no-entrypoint"]
+default = []
